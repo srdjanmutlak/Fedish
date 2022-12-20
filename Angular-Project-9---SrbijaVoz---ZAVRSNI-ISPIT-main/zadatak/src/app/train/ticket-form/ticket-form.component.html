@@ -1,0 +1,133 @@
+<div class="row">
+  <div class="col-6 mx-auto">
+    <form novalidate #forma="ngForm">
+      <div class="row">
+        <div class="mb-3">
+          <label class="form-label">Train Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            disabled
+            value="{{ train.number }}"
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label class="form-label">From:</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="{{ train.from }}"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label class="form-label">Departure:</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="{{ train.departure | date: 'dd.MM.yyyy.  HH:mm a' }}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="mb-3">
+            <label class="form-label">To:</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="{{ train.to }}"
+            />
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="mb-3">
+            <label class="form-label">Arrival:</label>
+            <input
+              type="text"
+              class="form-control"
+              disabled
+              value="{{ train.arrival | date: 'dd.MM.yyyy.  HH:mm a' }}"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <label class="form-label">Price:</label>
+          <input
+            type="text"
+            class="form-control"
+            disabled
+            value="{{ train.price }} RSD"
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter Your Name"
+            name="InputName"
+            #nameInput="ngModel"
+            [(ngModel)]="newTicket.name"
+            required
+          />
+          <small
+            *ngIf="
+              nameInput.touched &&
+              nameInput.errors &&
+              nameInput.errors['required']
+            "
+            class="text-danger"
+            >Name is required!</small
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="mb-3">
+          <label class="form-label">Birth Date</label>
+          <input
+            type="date"
+            class="form-control"
+            name="inputDate"
+            #dateInput="ngModel"
+            [(ngModel)]="newTicket.birthDate"
+            required
+          />
+          <small
+            *ngIf="
+              dateInput.touched &&
+              dateInput.errors &&
+              dateInput.errors['required']
+            "
+            class="text-danger"
+            >Birth Date is required!</small
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 mx-auto d-flex justify-content-center">
+          <button
+            class="btn btn-dark bg-danger"
+            (click)="onBuyTicket()"
+            [disabled]="forma.invalid"
+          >
+            Buy ticket
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

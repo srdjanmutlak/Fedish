@@ -1,0 +1,81 @@
+<div class="row">
+  <div class="col">
+    <div class="mb-3">
+      <label class="form-label">From:</label>
+      <select
+        class="form-select"
+        name="stationInputFrom"
+        [(ngModel)]="this.params.filter.from"
+        (change)="getTrains()"
+      >
+        <option value="">Any</option>
+        <option *ngFor="let station of stations" value="{{ station.name }}">
+          {{ station.name }}
+        </option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">To:</label>
+      <select
+        class="form-select"
+        name="stationInputTo"
+        [(ngModel)]="this.params.filter.to"
+        (change)="getTrains()"
+      >
+        <option value="">Any</option>
+        <option *ngFor="let station of stations" value="{{ station.name }}">
+          {{ station.name }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead>
+        <tr class="text-center">
+          <th scope="col">Number</th>
+          <th scope="col">From</th>
+          <th scope="col">Departure</th>
+          <th scope="col">To</th>
+          <th scope="col">Arrival</th>
+          <th scope="col">Travels</th>
+          <th scope="col">Type</th>
+          <th scope="col">Price</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="text-center" *ngFor="let train of trainsList.results">
+          <td scope="row">{{ train.number }}</td>
+          <td>{{ train.from }}</td>
+          <td>{{ train.departure | date: "dd.MM.yyyy.  HH:mm" }}</td>
+          <td>{{ train.to }}</td>
+          <td>{{ train.arrival | date: "HH:mm" }}</td>
+
+          <td>{{ train.travels * 1000 | date: "mm:ss" }}</td>
+          <td><img [src]="getTypePicture(train.type)" /></td>
+          <td>{{ train.price }}</td>
+          <td>
+            <button
+              class="btn btn-dark bg-secondary"
+              [routerLink]="[train._id]"
+            >
+              Details
+            </button>
+          </td>
+          <td>
+            <button
+              class="btn btn-dark bg-danger"
+              [routerLink]="['/form', train._id]"
+            >
+              Buy ticket
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
