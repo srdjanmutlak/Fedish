@@ -1,0 +1,46 @@
+@import "var";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $main-font;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.5;
+  }
+}
+
+.input-bar {
+  height: 50%;
+  width: 300px;
+  background-color: $black-repo;
+  color: $white;
+  border: 2px solid $gray-dark;
+  border-radius: 5px;
+  margin: 0 35px;
+  transition: all 1s;
+}
+
+@mixin tablet {
+  @media screen and (max-width: 800px) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media screen and (max-width: 400px) {
+    @content;
+  }
+}
